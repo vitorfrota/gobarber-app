@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Image, View, KeyboardAvoidingView, Platform, ScrollView,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Feather';
 
 import Button from '../../components/Button';
@@ -14,7 +15,7 @@ import {
 } from './styles';
 
 const Signin: React.FC = () => {
-  const a = 0;
+  const navigation = useNavigation();
   return (
     <>
       <KeyboardAvoidingView
@@ -38,14 +39,14 @@ const Signin: React.FC = () => {
               icon="lock"
               placeholder="Senha"
             />
-            <Button onPress={() => { console.log('deu'); }}>Entrar</Button>
+            <Button onPress={() => {}}>Entrar</Button>
             <ForgotPassword onPress={() => { console.log('eita'); }}>
               <ForgotPasswordText>Esqueci minha senha</ForgotPasswordText>
             </ForgotPassword>
           </Container>
         </ScrollView>
       </KeyboardAvoidingView>
-      <CreateAccountButton onPress={() => {}}>
+      <CreateAccountButton onPress={() => navigation.navigate('SignUp')}>
         <Icon name="log-in" size={20} color="#ff9000" />
         <CreateAccountButtonText>Criar uma conta</CreateAccountButtonText>
       </CreateAccountButton>
