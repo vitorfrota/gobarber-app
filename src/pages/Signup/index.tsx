@@ -49,7 +49,6 @@ const SignUp: React.FC = () => {
       Alert.alert('Cadastro realizado!', 'Você já pode fazer seu logon no GoBarber');
       navigation.goBack();
     } catch (err) {
-      console.log(err);
       if (err instanceof Yup.ValidationError) {
         const errors = getValidationErrors(err);
         formRef.current?.setErrors(errors);
@@ -58,7 +57,7 @@ const SignUp: React.FC = () => {
       }
       Alert.alert('Erro no cadastro!', 'Ocorreu um erro ao fazer cadastro, tente novamente.');
     }
-  }, []);
+  }, [navigation]);
 
   return (
     <>

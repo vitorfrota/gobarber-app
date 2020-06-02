@@ -10,6 +10,8 @@ import Icon from 'react-native-vector-icons/Feather';
 
 import Button from '../../components/Button';
 import Input from '../../components/Input';
+import { useAuth } from '../../hooks/auth';
+
 import getValidationErrors from '../../utils/getValidationErrors';
 
 import logoImg from '../../assets/logo.png';
@@ -28,6 +30,8 @@ const Signin: React.FC = () => {
   const passwordInputRef = useRef<TextInput>(null);
   const navigation = useNavigation();
 
+  const { signIn } = useAuth();
+
   const handleSignIn = useCallback(async (data: SignInFormData) => {
     try {
       formRef.current?.setErrors({});
@@ -39,10 +43,10 @@ const Signin: React.FC = () => {
       await schema.validate(data, {
         abortEarly: false,
       });
-      // await signIn({
-      //   email: data.email,
-      //   password: data.password,
-      // });
+      await signIn({
+        email: data.email,
+        password: data.password,
+      });
     } catch (err) {
       if (err instanceof Yup.ValidationError) {
         const errors = getValidationErrors(err);
@@ -52,7 +56,7 @@ const Signin: React.FC = () => {
       }
       Alert.alert('Erro na autenticação', 'Ocorreu um erro ao fazer login, cheque as credenciais');
     }
-  }, []);
+  }, [signIn]);
 
   return (
     <>
