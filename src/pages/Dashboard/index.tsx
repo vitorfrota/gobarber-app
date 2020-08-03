@@ -31,7 +31,7 @@ export interface Provider {
 const Dashboard: React.FC = () => {
   const [providers, setProviders] = useState<Provider[]>([]);
 
-  const { user, signOut } = useAuth();
+  const { user } = useAuth();
   const { navigate } = useNavigation();
 
   useEffect(() => {
@@ -57,7 +57,7 @@ const Dashboard: React.FC = () => {
           {'\n'}
           <UserName>{user.name}</UserName>
         </HeaderTitle>
-        <ProfileButton onPress={signOut}>
+        <ProfileButton onPress={navigateToProfile}>
           <UserAvatar source={{ uri: user.avatar_url }} />
         </ProfileButton>
       </Header>
@@ -79,7 +79,7 @@ const Dashboard: React.FC = () => {
               </ProviderMeta>
               <ProviderMeta>
                 <Icon name="clock" size={14} color="#ff9000" />
-                <ProviderMetaText>8h às 18h</ProviderMetaText>
+                <ProviderMetaText>8h às 17h</ProviderMetaText>
               </ProviderMeta>
             </ProviderInfo>
           </ProviderContainer>
